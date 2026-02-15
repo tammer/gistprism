@@ -47,7 +47,10 @@ function NewsletterSection({ newsletterUrl }) {
               </time>
             )}
             {post.summary?.short && (
-              <p className="post-summary">{post.summary.short}</p>
+              <p className="post-summary post-summary-short">{post.summary.short}</p>
+            )}
+            {post.summary?.full && (
+              <p className="post-summary post-summary-full">{post.summary.full}</p>
             )}
           </li>
         ))}
