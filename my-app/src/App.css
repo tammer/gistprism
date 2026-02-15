@@ -1,0 +1,95 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.home {
+  text-align: left;
+}
+
+.home h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+.app-loading,
+.app-error,
+.app-empty {
+  padding: 2rem;
+  text-align: center;
+}
+
+.app-error {
+  color: #c00;
+}
+
+.newsletter-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.newsletter-section {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid #333;
+}
+
+.newsletter-section.loading,
+.newsletter-section.error,
+.newsletter-section.empty {
+  color: #888;
+  font-style: italic;
+}
+
+.newsletter-section.error {
+  color: #e88;
+}
+
+.newsletter-title {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.post-item:last-child {
+  border-bottom: none;
+}
+
+.post-link {
+  color: #7eb8ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.post-link:hover {
+  text-decoration: underline;
+}
+
+.post-date {
+  display: block;
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 0.25rem;
+}
+
+.post-summary {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  color: #aaa;
+  line-height: 1.4;
+}
