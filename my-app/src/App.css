@@ -10,7 +10,7 @@
 
 .home h1 {
   margin-bottom: 1.5rem;
-  font-size: 1.75rem;
+  font-size: 2.1rem; /* 1.75 × 1.2 */
 }
 
 .app-loading,
@@ -52,7 +52,7 @@
 
 .newsletter-title {
   margin: 0 0 1rem;
-  font-size: 1.1rem;
+  font-size: 1.32rem; /* 1.1 × 1.2 */
   font-weight: 600;
   color: #1a1a1a;
   letter-spacing: -0.02em;
@@ -86,24 +86,24 @@
 
 .post-date {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.96rem; /* 0.8 × 1.2 */
   color: #6b6b6b;
   margin-top: 0.25rem;
 }
 
 .post-summary {
   margin: 0.5rem 0 0;
-  font-size: 0.9rem;
+  font-size: 1.08rem; /* 0.9 × 1.2 */
   color: #404040;
   line-height: 1.5;
 }
 
 .post-summary-short {
-  font-size: 1.08rem; /* 1.2 × 0.9rem */
+  font-size: 1.296rem; /* 1.08 × 1.2 */
 }
 
 .post-summary-full {
   margin-top: 0.5rem;
-  font-size: 0.85rem;
+  font-size: 1.02rem; /* 0.85 × 1.2 */
   color: #6b6b6b;
 }
