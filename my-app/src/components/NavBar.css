@@ -33,6 +33,30 @@
   position: relative;
   display: flex;
   align-items: center;
+  gap: 1rem;
+}
+
+.navbar-link {
+  font-size: 1rem;
+  color: #1a1a1a;
+  text-decoration: none;
+  padding: 0.4rem 0.75rem;
+}
+
+.navbar-link:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+.navbar-login-link {
+  font-size: 1rem;
+  padding: 0.4rem 0.75rem;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.navbar-login-link:hover {
+  text-decoration: underline;
 }
 
 .navbar-user-trigger {
@@ -117,7 +141,3 @@
   border-color: #fcc;
 }
 
-.navbar-login-link {
-  font-size: 1rem;
-  padding: 0.4rem 0.75rem;
-}

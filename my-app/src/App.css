@@ -127,3 +127,136 @@
   color: #c00;
   border-color: #c00;
 }
+
+/* Manage newsletters page */
+.manage-newsletters {
+  text-align: left;
+}
+
+.manage-newsletters h1 {
+  margin-bottom: 0.5rem;
+  font-size: 2.1rem;
+}
+
+.manage-newsletters-intro {
+  margin: 0 0 1.5rem;
+  color: #6b6b6b;
+  font-size: 1.05rem;
+}
+
+.manage-newsletters-form {
+  margin-bottom: 2rem;
+  max-width: 40rem;
+}
+
+.manage-newsletters-form label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.manage-newsletters-form-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.manage-newsletters-input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+.manage-newsletters-input:focus {
+  outline: none;
+  border-color: #666;
+}
+
+.manage-newsletters-add {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.manage-newsletters-add:hover {
+  background: #333;
+}
+
+.manage-newsletters-message {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+}
+
+.manage-newsletters-message.error {
+  color: #c00;
+}
+
+.manage-newsletters-message.success {
+  color: #0a0;
+}
+
+.manage-newsletters-list h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.32rem;
+  font-weight: 600;
+}
+
+.manage-newsletters-empty {
+  color: #6b6b6b;
+  font-style: italic;
+  margin: 0;
+}
+
+.manage-newsletters-url-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 50rem;
+}
+
+.manage-newsletters-url-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.manage-newsletters-url-item:last-child {
+  border-bottom: none;
+}
+
+.manage-newsletters-url-link {
+  flex: 1;
+  color: #1a1a1a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  word-break: break-all;
+}
+
+.manage-newsletters-url-link:hover {
+  color: #333;
+}
+
+.manage-newsletters-remove {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+  color: #c00;
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.manage-newsletters-remove:hover {
+  border-color: #c00;
+  background: #fff5f5;
+}

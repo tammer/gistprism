@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import './NavBar.css'
 
@@ -18,12 +19,13 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="navbar-inner">
-        <a href="/" className="navbar-brand">
+        <Link to="/" className="navbar-brand">
           GistPrism
-        </a>
+        </Link>
         <div className="navbar-actions">
           {isSignedIn ? (
             <>
+              <Link to="/newsletters" className="navbar-link">Newsletters</Link>
               <button
                 type="button"
                 className="navbar-user-trigger"
@@ -51,9 +53,9 @@ export default function NavBar() {
               )}
             </>
           ) : (
-            <a href="/" className="navbar-login-link">
+            <Link to="/" className="navbar-login-link">
               Home
-            </a>
+            </Link>
           )}
         </div>
       </div>
