@@ -65,7 +65,9 @@
 }
 
 .post-item {
+  position: relative;
   padding: 0.875rem 0;
+  padding-right: 5rem;
   border-bottom: 1px solid #f0f0f0;
 }
 
@@ -106,4 +108,22 @@
   margin-top: 0.5rem;
   font-size: 1.02rem; /* 0.85 × 1.2 */
   color: #6b6b6b;
+}
+
+.post-delete {
+  position: absolute;
+  top: 0.875rem;
+  right: 0;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+  color: #6b6b6b;
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.post-delete:hover {
+  color: #c00;
+  border-color: #c00;
 }

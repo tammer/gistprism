@@ -7,6 +7,11 @@ function NewsletterSection({ newsletterUrl }) {
   const [posts, setPosts] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [deletedIds, setDeletedIds] = useState(new Set())
+
+  const handleDelete = (postId) => {
+    setDeletedIds((prev) => new Set([...prev, postId]))
+  }
 
   useEffect(() => {
     const params = new URLSearchParams({
@@ -32,12 +37,22 @@ function NewsletterSection({ newsletterUrl }) {
   if (error) return <div className="newsletter-section error">Error loading {label}: {error}</div>
   if (!posts?.length) return <div className="newsletter-section empty">No posts for {label}</div>
 
+  const visiblePosts = posts.filter((post) => !deletedIds.has(post.id))
+
   return (
     <div className="newsletter-section">
       <h2 className="newsletter-title">{label}</h2>
       <ul className="post-list">
-        {posts.map((post) => (
+        {visiblePosts.map((post) => (
           <li key={post.id} className="post-item">
+            <button
+              type="button"
+              className="post-delete"
+              onClick={() => handleDelete(post.id)}
+              aria-label={`Done ${post.title}`}
+            >
+              Done
+            </button>
             <a href={post.url} target="_blank" rel="noopener noreferrer" className="post-link">
               {post.title}
             </a>
