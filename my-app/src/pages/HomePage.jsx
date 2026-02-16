@@ -5,6 +5,14 @@ import { useNewsletterUrls } from '../hooks/useNewsletterUrls'
 
 const API_BASE = 'http://127.0.0.1:5001'
 
+function formatArticleDate(dateStr) {
+  const d = new Date(dateStr)
+  const day = d.getDate()
+  const month = d.toLocaleDateString('en-GB', { month: 'short' })
+  const year = d.getFullYear()
+  return `${month} ${day}, ${year}`
+}
+
 function NewsletterSection({ newsletterUrl, readPostIds, onMarkRead }) {
   const [posts, setPosts] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -55,7 +63,7 @@ function NewsletterSection({ newsletterUrl, readPostIds, onMarkRead }) {
             </a>
             {post.post_date && (
               <time className="post-date" dateTime={post.post_date}>
-                {new Date(post.post_date).toLocaleDateString()}
+                {formatArticleDate(post.post_date)}
               </time>
             )}
             {post.summary?.short && (
