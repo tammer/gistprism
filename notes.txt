@@ -1,0 +1,8 @@
+DB: https://oojfqdntpcekwtzzjptt.supabase.co
+publishable key: sb_publishable_h1holOt5y-urh-US1aJ_Vw_uC1bd1Vp
+
+
+
+Next
+- remember the deletes
+- dynamic list of newsletters

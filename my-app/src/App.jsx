@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react'
+import { useAuth } from './contexts/AuthContext'
+import NavBar from './components/NavBar'
+import LoginForm from './components/LoginForm'
 import './App.css'
 
 const API_BASE = 'http://127.0.0.1:5001'
@@ -90,19 +93,63 @@ function App() {
       .finally(() => setUrlsLoading(false))
   }, [])
 
-  if (urlsLoading) return <div className="app-loading">Loading…</div>
-  if (urlsError) return <div className="app-error">Error: {urlsError}</div>
-  if (!urls.length) return <div className="app-empty">No newsletters configured.</div>
+  const { isSignedIn, loading: authLoading } = useAuth()
+
+  if (authLoading) {
+    return (
+      <>
+        <NavBar />
+        <div className="app-loading">Loading…</div>
+      </>
+    )
+  }
+
+  if (!isSignedIn) {
+    return (
+      <>
+        <NavBar />
+        <LoginForm />
+      </>
+    )
+  }
+
+  if (urlsLoading) {
+    return (
+      <>
+        <NavBar />
+        <div className="app-loading">Loading…</div>
+      </>
+    )
+  }
+  if (urlsError) {
+    return (
+      <>
+        <NavBar />
+        <div className="app-error">Error: {urlsError}</div>
+      </>
+    )
+  }
+  if (!urls.length) {
+    return (
+      <>
+        <NavBar />
+        <div className="app-empty">No newsletters configured.</div>
+      </>
+    )
+  }
 
   return (
-    <main className="home">
-      <h1>Newsletter posts</h1>
-      <div className="newsletter-grid">
-        {urls.map((url) => (
-          <NewsletterSection key={url} newsletterUrl={url} />
-        ))}
-      </div>
-    </main>
+    <>
+      <NavBar />
+      <main className="home">
+        <h1>Newsletter posts</h1>
+        <div className="newsletter-grid">
+          {urls.map((url) => (
+            <NewsletterSection key={url} newsletterUrl={url} />
+          ))}
+        </div>
+      </main>
+    </>
   )
 }
 
