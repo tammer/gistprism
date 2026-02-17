@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import { useAuth } from './contexts/AuthContext'
+import { NewsletterDataProvider } from './contexts/NewsletterDataContext'
 import NavBar from './components/NavBar'
+import NewsletterMenu from './components/NewsletterMenu'
 import LoginForm from './components/LoginForm'
 import HomePage from './pages/HomePage'
 import ManageNewsletters from './pages/ManageNewsletters'
@@ -24,16 +26,26 @@ function App() {
     )
   }
 
+  const threePanes = (
+    <div className="three-panes">
+      <aside className="pane pane-left" aria-label="Newsletter list">
+        {isSignedIn && <NewsletterMenu />}
+      </aside>
+      <main className="pane pane-middle">
+        {content}
+      </main>
+      <aside className="pane pane-right" aria-label="Right panel" />
+    </div>
+  )
+
   return (
     <div className="app-layout">
       <NavBar />
-      <div className="three-panes">
-        <aside className="pane pane-left" aria-label="Left panel" />
-        <main className="pane pane-middle">
-          {content}
-        </main>
-        <aside className="pane pane-right" aria-label="Right panel" />
-      </div>
+      {isSignedIn ? (
+        <NewsletterDataProvider>{threePanes}</NewsletterDataProvider>
+      ) : (
+        threePanes
+      )}
     </div>
   )
 }
