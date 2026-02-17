@@ -59,7 +59,6 @@ export default function HomePage() {
 
   return (
     <main className="home">
-      <h1>Newsletter posts</h1>
       <div className="newsletter-section">
         <h2 className="newsletter-title">{label}</h2>
         <ul className="post-list">
