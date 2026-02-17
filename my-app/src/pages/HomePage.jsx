@@ -72,14 +72,14 @@ export default function HomePage() {
               >
                 Done
               </button>
-              <a href={post.url} target="_blank" rel="noopener noreferrer" className="post-link">
-                {post.title}
-              </a>
               {post.post_date && (
                 <time className="post-date" dateTime={post.post_date}>
                   {formatArticleDate(post.post_date)}
                 </time>
               )}
+              <a href={post.url} target="_blank" rel="noopener noreferrer" className="post-link">
+                {post.title}
+              </a>
               {post.summary?.short && (
                 <p className="post-summary post-summary-short">{post.summary.short}</p>
               )}
