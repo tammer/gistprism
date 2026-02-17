@@ -19,7 +19,7 @@ export function NewsletterDataProvider({ children }) {
   const userId = user?.id
   const { rows, urls, loading: urlsLoading, error: urlsError } = useNewsletterUrls(userId)
   const { readPostIds, markAsRead } = useReadPosts(userId)
-  const { postsByUrl, loading: postsLoading } = useAllNewsletterPosts(urls)
+  const { postsByUrl, loading: postsLoading, refetchOne } = useAllNewsletterPosts(urls)
   const [selectedUrl, setSelectedUrl] = useState(null)
 
   useEffect(() => {
@@ -52,6 +52,7 @@ export function NewsletterDataProvider({ children }) {
     getUnreadCount,
     selectedPosts,
     selectedError,
+    refreshNewsletter: refetchOne,
   }
 
   return (

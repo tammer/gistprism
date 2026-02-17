@@ -1,5 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { API_BASE } from '../lib/api'
+
+function fetchPostsForUrl(newsletterUrl) {
+  const params = new URLSearchParams({ newsletter_url: newsletterUrl })
+  return fetch(`${API_BASE}/api/posts/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params,
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      return res.json()
+    })
+    .then((posts) => ({ posts, error: null }))
+    .catch((err) => ({ posts: null, error: err.message }))
+}
 
 export function useAllNewsletterPosts(urls) {
   const [postsByUrl, setPostsByUrl] = useState(() => new Map())
@@ -15,22 +30,7 @@ export function useAllNewsletterPosts(urls) {
     let cancelled = false
     setLoading(true)
 
-    const fetchOne = (newsletterUrl) => {
-      const params = new URLSearchParams({ newsletter_url: newsletterUrl })
-      return fetch(`${API_BASE}/api/posts/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params,
-      })
-        .then((res) => {
-          if (!res.ok) throw new Error(`HTTP ${res.status}`)
-          return res.json()
-        })
-        .then((posts) => ({ posts, error: null }))
-        .catch((err) => ({ posts: null, error: err.message }))
-    }
-
-    Promise.all(urls.map((url) => fetchOne(url))).then((results) => {
+    Promise.all(urls.map((url) => fetchPostsForUrl(url))).then((results) => {
       if (cancelled) return
       const next = new Map()
       urls.forEach((url, i) => {
@@ -45,5 +45,16 @@ export function useAllNewsletterPosts(urls) {
     }
   }, [urls?.length ? urls.join('\0') : ''])
 
-  return { postsByUrl, loading }
+  const refetchOne = useCallback((url) => {
+    return fetchPostsForUrl(url).then((result) => {
+      setPostsByUrl((prev) => {
+        const next = new Map(prev)
+        next.set(url, result)
+        return next
+      })
+      return result
+    })
+  }, [])
+
+  return { postsByUrl, loading, refetchOne }
 }
