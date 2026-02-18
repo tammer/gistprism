@@ -117,7 +117,9 @@
 }
 
 .add-newsletter-submit:hover:not(:disabled) {
-  opacity: 0.9;
+  background-color: var(--color-accent-fg-hover, var(--color-accent-fg));
+  color: var(--color-accent-on-emphasis, #fff);
+  border: none;
 }
 
 .add-newsletter-submit:disabled {
