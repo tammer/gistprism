@@ -4,24 +4,25 @@
   justify-content: center;
   align-items: flex-start;
   min-height: 40vh;
+  background-color: var(--color-bg-subtle);
 }
 
 .login-form-card {
   width: 100%;
   max-width: 440px;
   min-width: 320px;
-  background: #fff;
-  border: 1px solid #e8e8e8;
-  border-radius: 8px;
+  background: var(--color-bg-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-default);
   padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .login-form-title {
   margin: 0 0 1.5rem;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--color-text-primary);
 }
 
 .login-form {
@@ -36,7 +37,7 @@
   gap: 0.35rem;
   font-size: 0.95rem;
   font-weight: 500;
-  color: #333;
+  color: var(--color-text-primary);
 }
 
 .login-form-input {
@@ -45,27 +46,28 @@
   padding: 0.6rem 0.75rem;
   font-size: 1rem;
   font-family: inherit;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  background: #fff;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-default);
+  background: var(--color-bg-default);
+  color: var(--color-text-primary);
 }
 
 .login-form-input:focus {
   outline: none;
-  border-color: #1a1a1a;
-  box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.15);
+  border-color: var(--color-accent-fg);
+  box-shadow: 0 0 0 2px var(--focus-outline);
 }
 
 .login-form-error {
   margin: 0;
   font-size: 0.9rem;
-  color: #c00;
+  color: var(--color-danger-fg);
 }
 
 .login-form-message {
   margin: 0;
   font-size: 0.9rem;
-  color: #2d6a2d;
+  color: var(--color-success-fg);
 }
 
 .login-form-submit {
@@ -73,15 +75,15 @@
   font-size: 1rem;
   font-weight: 500;
   color: #fff;
-  background: #1a1a1a;
+  background: var(--color-btn-primary-bg);
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-default);
   cursor: pointer;
   margin-top: 0.25rem;
 }
 
 .login-form-submit:hover:not(:disabled) {
-  background: #333;
+  background: var(--color-btn-primary-hover);
 }
 
 .login-form-submit:disabled {
@@ -92,7 +94,7 @@
 .login-form-toggle {
   margin: 1.25rem 0 0;
   font-size: 0.95rem;
-  color: #6b6b6b;
+  color: var(--color-text-muted);
   text-align: center;
 }
 
@@ -102,12 +104,13 @@
   padding: 0;
   font-size: inherit;
   font-weight: 500;
-  color: #1a1a1a;
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  color: var(--color-accent-fg);
+  text-decoration: none;
   cursor: pointer;
 }
 
 .login-form-toggle-btn:hover {
-  color: #333;
+  color: var(--color-accent-fg-hover);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }

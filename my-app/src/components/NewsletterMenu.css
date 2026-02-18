@@ -5,7 +5,7 @@
 .newsletter-menu-empty {
   margin: 0;
   padding: 1rem;
-  color: #6b6b6b;
+  color: var(--color-text-muted);
   font-size: 0.95rem;
 }
 
@@ -13,6 +13,14 @@
   display: block;
   padding: 0 1rem;
   font-size: 0.95rem;
+  color: var(--color-accent-fg);
+  text-decoration: none;
+}
+
+.newsletter-menu-manage-link:hover {
+  color: var(--color-accent-fg-hover);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .newsletter-menu-list {
@@ -27,7 +35,7 @@
   flex: 0 0 auto;
   height: 4rem;
   min-height: 4rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border-muted);
 }
 
 .newsletter-menu-cell {
@@ -43,26 +51,28 @@
   border: none;
   border-radius: 0;
   background: transparent;
-  color: #1a1a1a;
+  color: var(--color-text-primary);
   font-family: inherit;
   font-size: 0.95rem;
   text-align: left;
   cursor: pointer;
   box-sizing: border-box;
   gap: 0.5rem;
+  border-left: 3px solid transparent;
 }
 
 .newsletter-menu-cell:hover {
-  background: #f0f0f0;
+  background: var(--color-bg-subtle);
 }
 
 .newsletter-menu-cell-selected {
-  background: #e8e8e8;
+  background: var(--color-bg-subtle);
   font-weight: 500;
+  border-left-color: var(--color-accent-fg);
 }
 
 .newsletter-menu-cell-selected:hover {
-  background: #e0e0e0;
+  background: var(--color-bg-subtle);
 }
 
 .newsletter-menu-cell-main {
@@ -89,7 +99,7 @@
 .newsletter-menu-cell-url {
   display: block;
   font-size: 0.75rem;
-  color: #6b6b6b;
+  color: var(--color-text-muted);
   margin-top: 0.15rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -100,7 +110,7 @@
 .newsletter-menu-cell-count {
   flex: 0 0 auto;
   font-size: 0.9rem;
-  color: #6b6b6b;
+  color: var(--color-text-muted);
 }
 
 .newsletter-menu-cell-refresh {
@@ -112,15 +122,15 @@
   padding: 0;
   margin: 0;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius-default);
   background: transparent;
-  color: #6b6b6b;
+  color: var(--color-text-muted);
   cursor: pointer;
 }
 
 .newsletter-menu-cell-refresh:hover:not(:disabled) {
-  background: rgba(0, 0, 0, 0.06);
-  color: #1a1a1a;
+  background: var(--color-bg-subtle);
+  color: var(--color-text-primary);
 }
 
 .newsletter-menu-cell-refresh:disabled {

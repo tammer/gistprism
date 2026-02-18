@@ -1,11 +1,31 @@
 :root {
-  font-family: Georgia, "Times New Roman", serif;
+  /* GitHub-like light theme */
+  --color-bg-default: #ffffff;
+  --color-bg-subtle: #f6f8fa;
+  --color-border-default: #d0d7de;
+  --color-border-muted: #d8dee4;
+  --color-text-primary: #24292f;
+  --color-text-muted: #57606a;
+  --color-accent-fg: #0969da;
+  --color-accent-fg-hover: #0550ae;
+  --color-btn-primary-bg: #1a7f37;
+  --color-btn-primary-hover: #2da44e;
+  --color-btn-secondary-border: #d0d7de;
+  --color-btn-secondary-bg: transparent;
+  --color-btn-secondary-hover-bg: #f6f8fa;
+  --color-danger-fg: #cf222e;
+  --color-danger-hover-bg: #fff5f5;
+  --color-success-fg: #1a7f37;
+  --radius-default: 6px;
+  --focus-outline: rgba(9, 105, 218, 0.3);
+
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
   line-height: 1.6;
   font-weight: 400;
 
   color-scheme: light;
-  color: #1a1a1a;
-  background-color: #f7f7f5;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-subtle);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,12 +35,13 @@
 
 a {
   font-weight: 500;
-  color: #1a1a1a;
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  color: var(--color-accent-fg);
+  text-decoration: none;
 }
 a:hover {
-  color: #333;
+  color: var(--color-accent-fg-hover);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 html,
@@ -42,23 +63,27 @@ body {
 h1 {
   font-size: 3.84em; /* 3.2 × 1.2 */
   line-height: 1.1;
+  color: var(--color-text-primary);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
+  border-radius: var(--radius-default);
+  border: 1px solid var(--color-btn-secondary-border);
   padding: 0.6em 1.2em;
   font-size: 1.2em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-btn-secondary-bg);
+  color: var(--color-text-primary);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.2s, background-color 0.2s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: var(--color-btn-secondary-hover-bg);
+  border-color: var(--color-text-muted);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--focus-outline);
 }
