@@ -82,6 +82,10 @@
   width: 100%;
 }
 
+.newsletter-menu-cell-name-unread {
+  font-weight: 600;
+}
+
 .newsletter-menu-cell-url {
   display: block;
   font-size: 0.75rem;

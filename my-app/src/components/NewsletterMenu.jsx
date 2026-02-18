@@ -52,6 +52,7 @@ export default function NewsletterMenu() {
       <ul className="newsletter-menu-list">
         {rows.map((row) => {
           const unreadCount = getUnreadCount(row.url)
+          const hasUnread = unreadCount > 0
           const isSelected = row.url === selectedUrl
           const isRefreshing = refreshingUrl === row.url
           return (
@@ -64,7 +65,13 @@ export default function NewsletterMenu() {
                 aria-label={`${getTitle(row.url)}, ${unreadCount} unread`}
               >
                 <span className="newsletter-menu-cell-main">
-                  <span className="newsletter-menu-cell-name">{getTitle(row.url)}</span>
+                  <span
+                    className={`newsletter-menu-cell-name ${
+                      hasUnread ? 'newsletter-menu-cell-name-unread' : ''
+                    }`}
+                  >
+                    {getTitle(row.url)}
+                  </span>
                   <span className="newsletter-menu-cell-url">{row.url}</span>
                 </span>
                 <span className="newsletter-menu-cell-count">({unreadCount})</span>
