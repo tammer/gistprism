@@ -26,7 +26,7 @@ function RefreshIcon() {
 }
 
 export default function NewsletterMenu() {
-  const { rows, selectedUrl, setSelectedUrl, getLabel, getUnreadCount, refreshNewsletter } =
+  const { rows, selectedUrl, setSelectedUrl, getLabel, getTitle, getUnreadCount, refreshNewsletter } =
     useNewsletterData()
   const [refreshingUrl, setRefreshingUrl] = useState(null)
 
@@ -61,19 +61,20 @@ export default function NewsletterMenu() {
                 className={`newsletter-menu-cell ${isSelected ? 'newsletter-menu-cell-selected' : ''}`}
                 onClick={() => setSelectedUrl(row.url)}
                 aria-pressed={isSelected}
-                aria-label={`${getLabel(row.url)}, ${unreadCount} unread`}
+                aria-label={`${getTitle(row.url)}, ${unreadCount} unread`}
               >
-                <span className="newsletter-menu-cell-name">{getLabel(row.url)}</span>
-                <span className="newsletter-menu-cell-count">
-                  {unreadCount} unread
+                <span className="newsletter-menu-cell-main">
+                  <span className="newsletter-menu-cell-name">{getTitle(row.url)}</span>
+                  <span className="newsletter-menu-cell-url">{row.url}</span>
                 </span>
+                <span className="newsletter-menu-cell-count">({unreadCount})</span>
               </button>
               <button
                 type="button"
                 className={`newsletter-menu-cell-refresh ${isRefreshing ? 'newsletter-menu-cell-refresh-spin' : ''}`}
                 onClick={(e) => handleRefresh(e, row.url)}
                 disabled={isRefreshing}
-                aria-label={`Refresh ${getLabel(row.url)}`}
+                aria-label={`Refresh ${getTitle(row.url)}`}
                 title="Refresh articles"
               >
                 <RefreshIcon />

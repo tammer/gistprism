@@ -3,6 +3,7 @@ import { useAuth } from './AuthContext'
 import { useNewsletterUrls } from '../hooks/useNewsletterUrls'
 import { useReadPosts } from '../hooks/useReadPosts'
 import { useAllNewsletterPosts } from '../hooks/useAllNewsletterPosts'
+import { usePageTitles } from '../hooks/usePageTitles'
 
 const NewsletterDataContext = createContext(null)
 
@@ -20,6 +21,7 @@ export function NewsletterDataProvider({ children }) {
   const { rows, urls, loading: urlsLoading, error: urlsError } = useNewsletterUrls(userId)
   const { readPostIds, markAsRead } = useReadPosts(userId)
   const { postsByUrl, loading: postsLoading, refetchOne } = useAllNewsletterPosts(urls)
+  const titlesByUrl = usePageTitles(urls)
   const [selectedUrl, setSelectedUrl] = useState(null)
 
   useEffect(() => {
@@ -39,6 +41,13 @@ export function NewsletterDataProvider({ children }) {
     return entry.posts.filter((post) => !readPostIds.has(String(post.id))).length
   }
 
+  const getTitle = (url) => {
+    const pageTitle = titlesByUrl.get(url)?.title
+    if (pageTitle != null && pageTitle !== '') return pageTitle
+    const entry = postsByUrl.get(url)
+    return entry?.title ?? getLabel(url)
+  }
+
   const value = {
     rows,
     postsByUrl,
@@ -49,6 +58,7 @@ export function NewsletterDataProvider({ children }) {
     loading,
     error: urlsError,
     getLabel,
+    getTitle,
     getUnreadCount,
     selectedPosts,
     selectedError,

@@ -12,8 +12,17 @@ function fetchPostsForUrl(newsletterUrl) {
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
       return res.json()
     })
-    .then((posts) => ({ posts, error: null }))
-    .catch((err) => ({ posts: null, error: err.message }))
+    .then((data) => {
+      if (Array.isArray(data)) {
+        return { posts: data, title: null, error: null }
+      }
+      return {
+        posts: data.posts ?? null,
+        title: data.title ?? null,
+        error: null,
+      }
+    })
+    .catch((err) => ({ posts: null, title: null, error: err.message }))
 }
 
 export function useAllNewsletterPosts(urls) {
