@@ -158,6 +158,40 @@
   border-color: #c00;
 }
 
+/* Article navigation (single-article view) */
+.article-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.article-nav-button {
+  color: #1a1a1a;
+  background-color: #f7f7f5;
+  border: 1px solid #e0e0e0;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.article-nav-button:hover:not(:disabled) {
+  border-color: #1a1a1a;
+  color: #333;
+}
+
+.article-nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.article-position {
+  color: #6b6b6b;
+  font-size: 0.95rem;
+}
+
 /* Manage newsletters page */
 .manage-newsletters {
   text-align: left;
