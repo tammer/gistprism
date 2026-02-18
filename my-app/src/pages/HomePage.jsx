@@ -109,6 +109,20 @@ export default function HomePage() {
             </div>
             <ul className="post-list">
               <li key={post.id} className="post-item">
+                {post.post_date && (
+                  <time className="post-date" dateTime={post.post_date}>
+                    {formatArticleDate(post.post_date)}
+                  </time>
+                )}
+                <a href={post.url} target="_blank" rel="noopener noreferrer" className="post-link">
+                  {post.title}
+                </a>
+                {post.summary?.short && (
+                  <p className="post-summary post-summary-short">{post.summary.short}</p>
+                )}
+                {post.summary?.full && (
+                  <p className="post-summary post-summary-full">{post.summary.full}</p>
+                )}
                 <button
                   type="button"
                   className="post-delete"
@@ -128,20 +142,6 @@ export default function HomePage() {
                 >
                   Done
                 </button>
-                {post.post_date && (
-                  <time className="post-date" dateTime={post.post_date}>
-                    {formatArticleDate(post.post_date)}
-                  </time>
-                )}
-                <a href={post.url} target="_blank" rel="noopener noreferrer" className="post-link">
-                  {post.title}
-                </a>
-                {post.summary?.short && (
-                  <p className="post-summary post-summary-short">{post.summary.short}</p>
-                )}
-                {post.summary?.full && (
-                  <p className="post-summary post-summary-full">{post.summary.full}</p>
-                )}
               </li>
             </ul>
           </>

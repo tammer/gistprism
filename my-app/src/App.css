@@ -95,8 +95,10 @@
 
 .post-item {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 0.875rem 0;
-  padding-right: 5rem;
   border-bottom: 1px solid #f0f0f0;
 }
 
@@ -141,9 +143,8 @@
 }
 
 .post-delete {
-  position: absolute;
-  top: 0.875rem;
-  right: 0;
+  align-self: flex-end;
+  margin-top: 1rem;
   padding: 0.25rem 0.5rem;
   font-size: 0.9rem;
   color: #6b6b6b;
