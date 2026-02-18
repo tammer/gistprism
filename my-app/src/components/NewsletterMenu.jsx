@@ -47,10 +47,14 @@ export default function NewsletterMenu() {
     )
   }
 
+  const sortedRows = [...rows].sort(
+    (a, b) => getUnreadCount(b.url) - getUnreadCount(a.url)
+  )
+
   return (
     <nav className="newsletter-menu" aria-label="Newsletter list">
       <ul className="newsletter-menu-list">
-        {rows.map((row) => {
+        {sortedRows.map((row) => {
           const unreadCount = getUnreadCount(row.url)
           const hasUnread = unreadCount > 0
           const isSelected = row.url === selectedUrl
