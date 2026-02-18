@@ -26,16 +26,46 @@ function RefreshIcon() {
   )
 }
 
+function MoreVerticalIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+    >
+      <circle cx="12" cy="6" r="1.5" />
+      <circle cx="12" cy="12" r="1.5" />
+      <circle cx="12" cy="18" r="1.5" />
+    </svg>
+  )
+}
+
 export default function NewsletterMenu() {
-  const { rows, selectedUrl, setSelectedUrl, getLabel, getTitle, getUnreadCount, refreshNewsletter } =
+  const { rows, selectedUrl, setSelectedUrl, getLabel, getTitle, getUnreadCount, refreshNewsletter, removeUrl } =
     useNewsletterData()
   const [refreshingUrl, setRefreshingUrl] = useState(null)
   const [modalOpen, setModalOpen] = useState(false)
+  const [openMenuId, setOpenMenuId] = useState(null)
 
   const handleRefresh = (e, url) => {
     e.stopPropagation()
+    setOpenMenuId(null)
     setRefreshingUrl(url)
     refreshNewsletter(url).finally(() => setRefreshingUrl(null))
+  }
+
+  const handleRemove = (e, id) => {
+    e.stopPropagation()
+    setOpenMenuId(null)
+    removeUrl(id)
+  }
+
+  const toggleMenu = (e, rowId) => {
+    e.stopPropagation()
+    setOpenMenuId((prev) => (prev === rowId ? null : rowId))
   }
 
   const topCell = (
@@ -98,16 +128,50 @@ export default function NewsletterMenu() {
                 </span>
                 <span className="newsletter-menu-cell-count">({unreadCount})</span>
               </button>
-              <button
-                type="button"
-                className={`newsletter-menu-cell-refresh ${isRefreshing ? 'newsletter-menu-cell-refresh-spin' : ''}`}
-                onClick={(e) => handleRefresh(e, row.url)}
-                disabled={isRefreshing}
-                aria-label={`Refresh ${getTitle(row.url)}`}
-                title="Refresh articles"
-              >
-                <RefreshIcon />
-              </button>
+              <div className="newsletter-menu-cell-actions">
+                <button
+                  type="button"
+                  className="newsletter-menu-cell-menu-trigger"
+                  onClick={(e) => toggleMenu(e, row.id)}
+                  aria-haspopup="true"
+                  aria-expanded={openMenuId === row.id}
+                  aria-label={`Actions for ${getTitle(row.url)}`}
+                  title="Actions"
+                >
+                  <MoreVerticalIcon />
+                </button>
+                {openMenuId === row.id && (
+                  <>
+                    <div
+                      className="newsletter-menu-dropdown-backdrop"
+                      aria-hidden
+                      onClick={() => setOpenMenuId(null)}
+                    />
+                    <div className="newsletter-menu-dropdown" role="menu">
+                      <button
+                        type="button"
+                        className="newsletter-menu-dropdown-item"
+                        role="menuitem"
+                        onClick={(e) => handleRefresh(e, row.url)}
+                        disabled={isRefreshing}
+                      >
+                        <span className={`newsletter-menu-dropdown-item-icon ${isRefreshing ? 'newsletter-menu-dropdown-item-icon-spin' : ''}`}>
+                          <RefreshIcon />
+                        </span>
+                        Refresh
+                      </button>
+                      <button
+                        type="button"
+                        className="newsletter-menu-dropdown-item newsletter-menu-dropdown-item-remove"
+                        role="menuitem"
+                        onClick={(e) => handleRemove(e, row.id)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
             </li>
           )
         })}

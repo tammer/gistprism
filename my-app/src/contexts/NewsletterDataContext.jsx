@@ -18,14 +18,17 @@ function getLabel(url) {
 export function NewsletterDataProvider({ children }) {
   const { user } = useAuth()
   const userId = user?.id
-  const { rows, urls, loading: urlsLoading, error: urlsError, addUrl } = useNewsletterUrls(userId)
+  const { rows, urls, loading: urlsLoading, error: urlsError, addUrl, removeUrl } = useNewsletterUrls(userId)
   const { readPostIds, markAsRead } = useReadPosts(userId)
   const { postsByUrl, loading: postsLoading, refetchOne } = useAllNewsletterPosts(urls)
   const titlesByUrl = usePageTitles(urls)
   const [selectedUrl, setSelectedUrl] = useState(null)
 
   useEffect(() => {
-    if (rows.length > 0 && selectedUrl === null) {
+    const urlInRows = rows.some((r) => r.url === selectedUrl)
+    if (!urlInRows) {
+      setSelectedUrl(rows.length > 0 ? rows[0].url : null)
+    } else if (rows.length > 0 && selectedUrl === null) {
       setSelectedUrl(rows[0].url)
     }
   }, [rows, selectedUrl])
@@ -65,6 +68,7 @@ export function NewsletterDataProvider({ children }) {
     selectedError,
     refreshNewsletter: refetchOne,
     addUrl,
+    removeUrl,
   }
 
   return (
