@@ -18,7 +18,7 @@ function getLabel(url) {
 export function NewsletterDataProvider({ children }) {
   const { user } = useAuth()
   const userId = user?.id
-  const { rows, urls, loading: urlsLoading, error: urlsError } = useNewsletterUrls(userId)
+  const { rows, urls, loading: urlsLoading, error: urlsError, addUrl } = useNewsletterUrls(userId)
   const { readPostIds, markAsRead } = useReadPosts(userId)
   const { postsByUrl, loading: postsLoading, refetchOne } = useAllNewsletterPosts(urls)
   const titlesByUrl = usePageTitles(urls)
@@ -50,6 +50,7 @@ export function NewsletterDataProvider({ children }) {
 
   const value = {
     rows,
+    urls,
     postsByUrl,
     readPostIds,
     markAsRead,
@@ -63,6 +64,7 @@ export function NewsletterDataProvider({ children }) {
     selectedPosts,
     selectedError,
     refreshNewsletter: refetchOne,
+    addUrl,
   }
 
   return (

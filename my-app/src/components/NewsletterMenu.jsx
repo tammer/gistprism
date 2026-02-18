@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNewsletterData } from '../contexts/NewsletterDataContext'
+import AddNewsletterModal from './AddNewsletterModal'
 import './NewsletterMenu.css'
 
 function RefreshIcon() {
@@ -29,6 +30,7 @@ export default function NewsletterMenu() {
   const { rows, selectedUrl, setSelectedUrl, getLabel, getTitle, getUnreadCount, refreshNewsletter } =
     useNewsletterData()
   const [refreshingUrl, setRefreshingUrl] = useState(null)
+  const [modalOpen, setModalOpen] = useState(false)
 
   const handleRefresh = (e, url) => {
     e.stopPropagation()
@@ -36,13 +38,28 @@ export default function NewsletterMenu() {
     refreshNewsletter(url).finally(() => setRefreshingUrl(null))
   }
 
+  const topCell = (
+    <div className="newsletter-menu-add-cell">
+      <button
+        type="button"
+        className="newsletter-menu-add-button"
+        onClick={() => setModalOpen(true)}
+        aria-label="Add newsletter"
+      >
+        Add Newsletter
+      </button>
+    </div>
+  )
+
   if (rows.length === 0) {
     return (
       <div className="newsletter-menu">
+        {topCell}
         <p className="newsletter-menu-empty">No newsletters.</p>
         <Link to="/newsletters" className="newsletter-menu-manage-link">
           Manage newsletters
         </Link>
+        <AddNewsletterModal open={modalOpen} onClose={() => setModalOpen(false)} />
       </div>
     )
   }
@@ -53,6 +70,7 @@ export default function NewsletterMenu() {
 
   return (
     <nav className="newsletter-menu" aria-label="Newsletter list">
+      {topCell}
       <ul className="newsletter-menu-list">
         {sortedRows.map((row) => {
           const unreadCount = getUnreadCount(row.url)
@@ -94,6 +112,7 @@ export default function NewsletterMenu() {
           )
         })}
       </ul>
+      <AddNewsletterModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </nav>
   )
 }
