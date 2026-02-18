@@ -19,7 +19,7 @@ export default function HomePage() {
     markAsRead,
     loading,
     error: urlsError,
-    getLabel,
+    getTitle,
   } = useNewsletterData()
 
   const visiblePosts = (selectedPosts || []).filter((post) => !readPostIds.has(String(post.id)))
@@ -53,13 +53,13 @@ export default function HomePage() {
     return <div className="app-loading">Loading…</div>
   }
 
-  const label = getLabel(selectedUrl)
+  const newsletterTitle = getTitle(selectedUrl)
 
   if (selectedError) {
     return (
       <main className="home">
         <div className="newsletter-section error">
-          Error loading {label}: {selectedError}
+          Error loading {newsletterTitle}: {selectedError}
         </div>
       </main>
     )
@@ -68,7 +68,7 @@ export default function HomePage() {
   if (!selectedPosts?.length) {
     return (
       <main className="home">
-        <div className="newsletter-section empty">No posts for {label}</div>
+        <div className="newsletter-section empty">No posts for {newsletterTitle}</div>
       </main>
     )
   }
@@ -79,7 +79,7 @@ export default function HomePage() {
   return (
     <main className="home">
       <div className="newsletter-section">
-        <h2 className="newsletter-title">{label}</h2>
+        <h2 className="newsletter-title">{newsletterTitle}</h2>
         {hasVisiblePosts && post && (
           <>
             <div className="article-nav">
